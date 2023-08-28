@@ -34,7 +34,7 @@ jobs:
         id: scan
         uses: crazy-max/ghaction-container-scan@v2
         with:
-          image: user/app:latest
+          image: vijaygawate/java_app:test
           dockerfile: ./Dockerfile
       -
         name: Build multi-platform and push
