@@ -1,0 +1,30 @@
+name: Create Platform Version
+
+on:
+  workflow_dispatch:
+    inputs:
+        release_type:
+          description: 'Define the Release type'     
+          required: true
+          default: 'patch'
+          type: choice
+          options:
+            - patch
+            - minor
+            - major
+
+jobs:
+  fetch_tags:
+    runs-on: ubuntu-latest
+    outputs:
+      python_weav_version: ${{ steps.python-app.outputs.tag }}
+    steps:
+### Find latest tag of remote repo
+      - uses: oprypin/find-latest-tag@v1
+        name: Fetch python-app version 
+        with:
+          repository: Vijaygawate/python_app  # The repository to scan.
+          releases-only: true  # We know that all relevant tags have a GitHub release for them.
+          #token: ${{ secrets.PERSONAL_TOKEN }}
+        id: python-app  # The step ID to refer to later.
+      - run: echo "python-app is at version ${{ steps.python-ap.outputs.tag }}"p
