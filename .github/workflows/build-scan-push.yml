@@ -44,3 +44,14 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: vijaygawate/java_app:test
+
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=devsecops
+            -Dsonar.projectKey=devsecops
