@@ -1,3 +1,4 @@
+#Dockerfile for python app
 FROM python:3.11-alpine
 LABEL maintainer="vijaygawate79@gmail.com"
 COPY . /app
