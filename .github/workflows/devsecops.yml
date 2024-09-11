@@ -1,0 +1,17 @@
+name: Scan for bugs and vulerabilities
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Run unit tests and SAST scan on the source code 
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} //Sonar Token generated 
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} example URL (https://sq.bswlog.co.in/)
